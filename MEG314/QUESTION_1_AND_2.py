@@ -5,7 +5,7 @@ x = symbols('x')
 y = Function('y')(x)
 
 # Define the differential equation
-diff_eq = 5 * Derivative(y, x) + 2 * x - 3
+diff_eq = 5 * y.diff(x) + 2 * x - 3
 
 # Solve the differential equation
 solution = dsolve(diff_eq, y)
