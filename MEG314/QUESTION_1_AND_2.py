@@ -15,7 +15,7 @@ print("General solution:")
 print(solution)
 
 # Substitute the initial condition y(2) = 1.4 into the general solution
-constant_value = solution.subs({y(2): 1.4}).rhs
+constant_value = solution.subs({y.subs(x, 2): 1.4}).rhs
 
 # Display the constant value
 print("\nConstant value:")
