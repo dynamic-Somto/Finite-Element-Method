@@ -1,6 +1,7 @@
+# Import necessary libraries
 from sympy import symbols, Function, Derivative, Eq, cos, dsolve
 
-# Define the variable and function
+# Define the independent variable and the dependent function
 x = symbols('x')
 y = Function('y')(x)
 
@@ -11,5 +12,5 @@ diff_eq = Eq(Derivative(y, x), cos(4*x) - 2*x)
 solution = dsolve(diff_eq, y)
 
 # Display the solution
-print("Solution:")
+print("The solution to the differential equation is:")
 print(solution)

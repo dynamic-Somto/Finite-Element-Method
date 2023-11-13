@@ -1,15 +1,16 @@
+# Import necessary libraries
 from sympy import symbols, Function, Eq, dsolve
 
 # Define the variable and function
-t = symbols('t')
-x = Function('x')(t)
+time = symbols('t')
+position = Function('x')(time)
 
 # Define the differential equation
-diff_eq = Eq(x.diff(t, t) + 196 * x, 0)
+differential_eq = Eq(position.diff(time, time) + 196 * position, 0)
 
 # Solve the differential equation
-solution = dsolve(diff_eq, x)
+solution = dsolve(differential_eq, position)
 
 # Display the solution
-print("Solution:")
+print("The solution to the differential equation is:")
 print(solution)
