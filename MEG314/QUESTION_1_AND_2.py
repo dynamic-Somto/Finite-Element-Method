@@ -8,7 +8,7 @@ y = Function('y')(x)
 diff_eq = 5 * y.diff(x) + 2 * x - 3
 
 # Solve the differential equation
-solution = dsolve(diff_eq, y)
+solution = dsolve(diff_eq, y, ics={y.subs(x, 2): 1.4})
 
 # Display the general solution
 print("General solution:")
