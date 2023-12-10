@@ -15,13 +15,13 @@ diff_eq = sp.Eq(g - sp.Rational(c, m) * v, v.diff(t))
 # Solved general solution
 general_solution = sp.dsolve(diff_eq)
 
-print('\nGeneral Solution:\n')
+print('\nGeneral Solution:')
 sp.pprint((sp.simplify(general_solution.n())))
 
 # Solved particular solution
 particular_solution = sp.dsolve(diff_eq, ics = {v.subs(t, 0) : 0})
 
-print('\nParticular Solution:\n')
+print('\nParticular Solution:')
 sp.pprint((sp.simplify(particular_solution.n())))
 
 # To get the velocity after 10s, substitute for t = 10s
