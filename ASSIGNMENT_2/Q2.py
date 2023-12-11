@@ -1,43 +1,42 @@
 import sympy as sp
 
 # Constants
-c = 12.5  #Drag Coefficient
-m = 68.1  #Mass
-g = 9.81  #Gravitational acceleration
+drag_coefficient = 12.5
+mass = 68.1
+gravitational_acceleration = 9.81
 
 # Symbols
-t = sp.symbols('t')
-v = sp.Function('v')('t')
+time = sp.symbols('t')
+velocity = sp.Function('v')(time)
 
 # Differential Equation
-diff_eq = sp.Eq(g - sp.Rational(c, m) * v, v.diff(t))
+differential_eq = sp.Eq(gravitational_acceleration - sp.Rational(drag_coefficient, mass) * velocity, velocity.diff(time))
 
 # Solved general solution
-general_solution = sp.dsolve(diff_eq)
+general_solution = sp.dsolve(differential_eq)
 
 print('\nGeneral Solution:\n')
-sp.pprint((sp.simplify(general_solution.n())))
+sp.pprint(sp.simplify(general_solution))
 
 # Solved particular solution
-particular_solution = sp.dsolve(diff_eq, ics = {v.subs(t, 0) : 0})
+particular_solution = sp.dsolve(differential_eq, ics={velocity.subs(time, 0): 0})
 
 print('\nParticular Solution:\n')
-sp.pprint((sp.simplify(particular_solution.n())))
+sp.pprint(sp.simplify(particular_solution))
 
-# To get the velocity after 10s, substitute for t = 10s
-velocity_10 = particular_solution.rhs.subs(t, 10)
+# Calculate velocity at t = 10 seconds
+velocity_10 = particular_solution.rhs.subs(time, 10)
 
-print(f"\nVelocity at t = 10seconds is {velocity_10.round(2)}𝑚/𝑠")
+print(f"\nVelocity at t = 10 seconds is {velocity_10.round(2)} m/s")
 
-# To get the acceleration after 10s, differentiate the 
-# general equation w.r.t {t} and substitute for t = 10s
-acc_10 = particular_solution.rhs.diff(t).subs(t, 10)
+# Calculate acceleration at t = 10 seconds
+acceleration_10 = particular_solution.rhs.diff(time).subs(time, 10)
 
-print(f"\nAcceleration at t = 10seconds is {acc_10.round(2)}𝑚/𝑠2")
+print(f"\nAcceleration at t = 10 seconds is {acceleration_10.round(2)} m/s^2")
 
-# Terminal Velocity
-terminal_velocity = g * m / c
-print(f"\nTerminal velocity is {round(terminal_velocity, 2)}𝑚/𝑠")
+# Calculate terminal velocity
+terminal_velocity = gravitational_acceleration * mass / drag_coefficient
+print(f"\nTerminal velocity is {round(terminal_velocity, 2)} m/s")
 
-# Plotting the graph
-sp.plot(particular_solution.rhs, (t, 0, 30))
+# Plot the graph
+sp.plot(particular_solution.rhs, (time, 0, 30))
